@@ -12,22 +12,22 @@ private:
     int Length;
 public:
     OneWayList():pHead(nullptr),pTail(nullptr){}
-    // This function adds a new node to the end of the list.
-    // It creates a new Node object with the given value and a null pointer for the next node.
-    // If the list is currently empty, it sets both the head and tail pointers to the new node.
-    // If the list is not empty, it sets the next pointer of the current tail node to the new node
-    // and updates the tail pointer to the new node.
+    // This function adds a new Node to the end of the list.
+    // It creates a new Node object with the given value and a null pointer for the next Node.
+    // If the list is currently empty, it sets both the head and tail pointers to the new Node.
+    // If the list is not empty, it sets the next pointer of the current tail Node to the new Node
+    // and updates the tail pointer to the new Node.
     // Finally, it increments the length of the list.
     void Add(T value){
-        // Create a new Node object with the given value and a null pointer for the next node.
+        // Create a new Node object with the given value and a null pointer for the next Node.
         Node<T>* tmp = new Node<T>{value,NULL};
         
-        // If the list is currently empty, set both the head and tail pointers to the new node.
+        // If the list is currently empty, set both the head and tail pointers to the new Node.
         if(pHead==NULL){
             pTail = pHead = tmp;
         }else{
-            // If the list is not empty, set the next pointer of the current tail node to the new node
-            // and update the tail pointer to the new node.
+            // If the list is not empty, set the next pointer of the current tail Node to the new Node
+            // and update the tail pointer to the new Node.
             pTail->next = tmp;
             pTail = pTail->next;
         }
@@ -35,12 +35,12 @@ public:
         // Increment the length of the list.
         Length++;
     }
-    // This function inserts a new node at a specified index in the list.
-    // It creates a new Node object with the given value and a null pointer for the next node.
-    // If the index is equal to the length of the list, the new node is inserted at the end of the list.
+    // This function inserts a new Node at a specified index in the list.
+    // It creates a new Node object with the given value and a null pointer for the next Node.
+    // If the index is equal to the length of the list, the new Node is inserted at the end of the list.
     // If the index is less than zero, the function returns without doing anything.
-    // If the index is greater than zero and less than the length of the list, the function finds the node
-    // at the specified index and inserts the new node between it and its next node.
+    // If the index is greater than zero and less than the length of the list, the function finds the Node
+    // at the specified index and inserts the new Node between it and its next Node.
     // Finally, it increments the length of the list.
     void Insert(int index,T value){
         // If the index is equal to the length of the list, we can simply call the Add function.
@@ -48,37 +48,37 @@ public:
         // If the index is less than zero, we don't need to do anything.
         if(index<0)return;
         
-        // Create a new Node object with the given value and a null pointer for the next node.
+        // Create a new Node object with the given value and a null pointer for the next Node.
         Node<T> *tmp = new Node<T>{value,NULL};
         
-        // If the index is equal to zero, we can insert the new node at the beginning of the list.
+        // If the index is equal to zero, we can insert the new Node at the beginning of the list.
         if(index == 0){
-            // Set the next pointer of the new node to the current head of the list.
+            // Set the next pointer of the new Node to the current head of the list.
             tmp->next = pHead;
-            // Set the head of the list to the new node.
+            // Set the head of the list to the new Node.
             pHead = tmp;
         }else{
-            // If the index is greater than zero, we need to find the node at the specified index and insert the new node between it and its next node.
+            // If the index is greater than zero, we need to find the Node at the specified index and insert the new Node between it and its next Node.
             
             // Start at the head of the list.
             Node <T>*p =pHead;
             
             // Iterate through the list until we reach the specified index.
             for(int i =1;i<index;i++,p=p->next){
-                // Set the next pointer of the new node to the next node after the current node.
+                // Set the next pointer of the new Node to the next Node after the current Node.
                 tmp->next = p->next;
-                // Set the next pointer of the current node to the new node.
+                // Set the next pointer of the current Node to the new Node.
                 p->next = tmp;
             }
         }
         // Increment the length of the list.
         Length++;
     }
-    // This function deletes a node at a specified index from the list.
+    // This function deletes a Node at a specified index from the list.
     // If the list is empty or the index is out of range, the function returns without doing anything.
-    // If the index is equal to zero, the function deletes the head node and updates the head pointer to the next node.
-    // If the index is greater than zero and less than the length of the list, the function finds the node
-    // at the specified index and deletes it by updating the next pointers of the previous and next nodes.
+    // If the index is equal to zero, the function deletes the head Node and updates the head pointer to the next Node.
+    // If the index is greater than zero and less than the length of the list, the function finds the Node
+    // at the specified index and deletes it by updating the next pointers of the previous and next Nodes.
     // Finally, it decrements the length of the list.
     void Delete(int index){
         // If the list is empty, we don't need to do anything.
@@ -89,52 +89,52 @@ public:
         // Create a temporary pointer to iterate through the list.
         Node<T>*tmp = pHead;
         
-        // If the index is equal to zero, we can delete the head node.
+        // If the index is equal to zero, we can delete the head Node.
         if(index==0){
-            // Set the head pointer to the next node of the current head node.
+            // Set the head pointer to the next Node of the current head Node.
             pHead = tmp->next;
-            // Set the next pointer of the current head node to NULL to avoid memory leaks.
+            // Set the next pointer of the current head Node to NULL to avoid memory leaks.
             tmp->next = NULL;
-            // Delete the current head node.
+            // Delete the current head Node.
             delete tmp;
 
         }else{
-            // If the index is greater than zero, we need to find the node at the specified index and delete it.
+            // If the index is greater than zero, we need to find the Node at the specified index and delete it.
             
             // Start at the head of the list.
             Node<T>*p = pHead;
             
-            // Iterate through the list until we reach the previous node of the specified index.
+            // Iterate through the list until we reach the previous Node of the specified index.
             for(int i=1;i<index;i++,p=p->next);
-            // Set the temporary pointer to the node at the specified index.
+            // Set the temporary pointer to the Node at the specified index.
             tmp = p->next;
-            // Set the next pointer of the previous node to the next node after the node at the specified index.
+            // Set the next pointer of the previous Node to the next Node after the Node at the specified index.
             p->next = tmp->next;
-            // Set the next pointer of the node at the specified index to NULL to avoid memory leaks.
+            // Set the next pointer of the Node at the specified index to NULL to avoid memory leaks.
             tmp->next = NULL;
-            // If the node at the specified index is the tail node, update the tail pointer to the previous node.
+            // If the Node at the specified index is the tail Node, update the tail pointer to the previous Node.
             if(pTail== tmp) pTail=p;
-            // Delete the node at the specified index.
+            // Delete the Node at the specified index.
             delete tmp;     
         }
         // Decrement the length of the list.
         Length--;
     }
-    // This function prints the values of all the nodes in the list.
-    // It starts at the head of the list and iterates through each node,
-    // printing the value of each node.
+    // This function prints the values of all the Nodes in the list.
+    // It starts at the head of the list and iterates through each Node,
+    // printing the value of each Node.
     // The iteration continues until we reach the end of the list (i.e., NULL).
     // Finally, it prints a newline character to separate the list from the rest of the output.
     void Print(){
         // Start at the head of the list.
         Node<T>* currentNode = pHead;
         
-        // Iterate through each node in the list.
+        // Iterate through each Node in the list.
         while(currentNode != NULL){
-            // Print the value of the current node.
+            // Print the value of the current Node.
             cout << currentNode->value << " ";
             
-            // Move to the next node in the list.
+            // Move to the next Node in the list.
             currentNode = currentNode->next;
         }
         
@@ -151,7 +151,7 @@ public:
 // Then it inserts a new value at the beginning of the list.
 // After that, it calls the Print function to display the contents of the list.
 // The while loop continues until the length of the list is zero.
-// Inside the loop, it deletes the first node of the list and calls the Print function again.
+// Inside the loop, it deletes the first Node of the list and calls the Print function again.
 int main(){
     // Create a new instance of the OneWayList class.
     OneWayList<string> list;
@@ -169,7 +169,7 @@ int main(){
     
     // Continue until the length of the list is zero.
     while(list.GetLength()>0){
-        // Delete the first node of the list.
+        // Delete the first Node of the list.
         list.Delete(0);
         
         // Display the updated contents of the list.
