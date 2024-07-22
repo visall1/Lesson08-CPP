@@ -2,7 +2,7 @@
 #include <ranges>
 #include <deque>
 using namespace std;
-void Print(deque<int> q)
+void Print(deque<string> q)
 {
     while (!q.empty())
     {
@@ -13,18 +13,16 @@ void Print(deque<int> q)
 }
 int main()
 {
-    deque<int> q;
-    for (int i = 1; i < 12; i++)
-    {
-        if (i % 2 == 0)
-            q.push_front(i);
-        else
-            q.push_back(i);
+    deque<string> person;
+    person.push_front("Nika");
+    person.push_back("Liza"); 
+    person.push_front("Thanakrit");
+   // person.pop_front();
+    person.emplace(person.begin(),"Jojo");
+    for(auto i=person.rbegin();i != person.rend();i++){
+        cout<<*i<<" ";
     }
-    Print(q);
-    q.emplace(q.begin() + 2, 20);
-    q.emplace_front(25);
-    q.emplace_back(78);
-    Print(q);
+    cout<<endl;
+    Print(person);
     return 0;
 }
